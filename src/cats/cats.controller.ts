@@ -54,7 +54,7 @@ export class CatsController {
 
   @Delete(":id")
   async removeCat(@Param("id") id: number
-    , @Res({passthrough: true}) res: Response): Promise<Response<boolean>> {
+    , @Res({passthrough: true}) res: Response): Promise<boolean> {
     let removed = false; 
     if (id && Number.parseInt(id.toString()) > 0) {
       removed = await this.catService.removeCat(Number.parseInt(id.toString()));
@@ -62,7 +62,7 @@ export class CatsController {
     res.statusCode = removed ? HttpStatus.OK : HttpStatus.NOT_FOUND;
     res.status(removed ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     res.setHeader('x-removal-Result', removed.toString());
-    return res.status(removed ? HttpStatus.OK : HttpStatus.NOT_FOUND).json(removed);
+    return removed;
   }
 
 

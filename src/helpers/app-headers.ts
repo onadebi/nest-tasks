@@ -6,6 +6,7 @@ export function AppHeaders(app: INestApplication, headers: Record<string, string
         for (const [key, value] of Object.entries(headers)) {
             res.setHeader(key, value);
         }
+        console.info(`🌐:[${req.method}] ${req.ip} =>  ${req.url} | ${req.path}`);
         next();
     });
 

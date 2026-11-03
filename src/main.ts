@@ -13,7 +13,7 @@ async function bootstrap() {
   
   console.log("🌐 URL at ==> "+"http://localhost:"+PORT);
 
-  AppHeaders(app, appsettings.app.headers);
+  // AppHeaders(app, appsettings.app.headers);
   SwaggerActivate(app, 'swagger');
   await app.listen(PORT)
 }
