@@ -10,7 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   console.log("🌐 URL at ==> "+"http://localhost:"+PORT);
 
-  SwaggerActivate(app, 'api');
+  SwaggerActivate(app, 'swagger');
   await app.listen(PORT)
 }
 await bootstrap();
