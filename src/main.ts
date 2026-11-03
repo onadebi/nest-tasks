@@ -13,8 +13,10 @@ async function bootstrap() {
   
   console.log("🌐 URL at ==> "+"http://localhost:"+PORT);
 
+  // #region Global middleware
   // AppHeaders(app, appsettings.app.headers);
   SwaggerActivate(app, 'swagger');
+  //#endregion
   await app.listen(PORT)
 }
 await bootstrap();
