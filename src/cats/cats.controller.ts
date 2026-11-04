@@ -1,13 +1,15 @@
 import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import type { Request, Response } from "express";
-import { Controller, Get, Req, Res, Param, Post, Body, Put, Delete, HttpStatus, ParseIntPipe, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Req, Res, Param, Post, Body, Put, Delete, HttpStatus, ParseIntPipe, UsePipes, ValidationPipe, UseInterceptors } from '@nestjs/common';
 import { CreateCatDto, createCatSchema } from "./models/CreateCatDto.js";
 import { CatsService } from "./cats.service.js";
 import { ZodValidationPipe } from "../helpers/pipes/zodvalidation.pipe.js";
 import { Roles } from "../helpers/decorators/roles.decorator.js";
+import { LoggingInterceptor } from "../helpers/interceptors/logging.interceptors.js";
 
 
 @ApiTags("cats")
+@UseInterceptors(LoggingInterceptor)
 @Controller('cats')
 export class CatsController {
 

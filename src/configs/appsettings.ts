@@ -5,7 +5,8 @@ const appsettings = {
             "x-powered-by": "Java",
             "author": "onax",
             "version": "v1"
-        }
+        },
+        latencyThreshold: process.env.LATENCY_THRESHOLD ? parseInt(process.env.LATENCY_THRESHOLD) : 5000
     }
 };
 
