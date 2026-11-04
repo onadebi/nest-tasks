@@ -6,6 +6,7 @@ import { CatsService } from "./cats.service.js";
 import { ZodValidationPipe } from "../helpers/pipes/zodvalidation.pipe.js";
 import { Roles } from "../helpers/decorators/roles.decorator.js";
 import { LoggingInterceptor } from "../helpers/interceptors/logging.interceptors.js";
+import { User } from "../helpers/decorators/user.decorator.js";
 
 
 @ApiTags("cats")
@@ -17,7 +18,8 @@ export class CatsController {
 
 
   @Get()
-  async findAll(): Promise<CreateCatDto[]> {
+  async findAll(@User() user: any): Promise<CreateCatDto[]> {
+    console.info(`User Info: ${JSON.stringify(user)}`);
     return await this.catService.getAllCats();
   }
 
