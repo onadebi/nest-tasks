@@ -4,6 +4,7 @@ import { Controller, Get, Req, Res, Param, Post, Body, Put, Delete, HttpStatus, 
 import { CreateCatDto, createCatSchema } from "./models/CreateCatDto.js";
 import { CatsService } from "./cats.service.js";
 import { ZodValidationPipe } from "../helpers/pipes/zodvalidation.pipe.js";
+import { Roles } from "../helpers/decorators/roles.decorator.js";
 
 
 @ApiTags("cats")
@@ -55,6 +56,7 @@ export class CatsController {
   }
 
   @Delete(":id")
+  @Roles(["admin"])
   async removeCat(
     @Param("id", new ParseIntPipe({errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE, exceptionFactory: (err)=>{console.log(`Error:: {err}`)}})) id: number
     , @Res({passthrough: true}) res: Response): Promise<boolean> {
